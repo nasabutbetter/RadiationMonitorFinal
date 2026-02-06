@@ -1,0 +1,15 @@
+# Standard ignores 
+build/ 
+.gradle/ 
+.idea/
+*.apk 
+*.aab 
+*.aar 
+*.so 
+*.hprof 
+local.properties 
+node_modules/ 
+artifacts/ 
+cache/ 
+typechain-types/ 
+.env
