@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!--
+    If you prohibit app data from being backed up on Android 12
+    or higher, then you must set the AndroidManifest.xml attribute
+    android:dataExtractionRules to @xml/data_extraction_rules.
+    For more information, see: https://developer.android.com/about/versions/12/backup-restore
+    -->
+    <exclude domain="sharedprefs" path=".*" />
+</full-backup-content>

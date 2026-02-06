@@ -1,0 +1,41 @@
+# Gitpod configuration for Android + Hardhat project
+tasks:
+  - name: Setup Android and Node
+    init: |
+      echo "Setting up Android and Node.js environment..."
+      # Ensure Android SDK is in PATH
+      export ANDROID_SDK_ROOT="/home/gitpod/Android/sdk"
+      export PATH="$PATH:${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${ANDROID_SDK_ROOT}/platform-tools"
+      # Navigate to blockchain directory and install dependencies for Hardhat
+      cd blockchain
+      npm install --legacy-peer-deps # Or yarn install
+      cd ..
+      # Navigate to Android app directory and run Gradle sync
+      cd android-app
+      ./gradlew assembleDebug # Try a build to ensure everything is set up
+      cd ..
+    command: |
+      echo "Environment setup complete."
+      echo "To build the Android app: cd android-app && ./gradlew assembleDebug"
+      echo "To run Hardhat commands: cd blockchain && npx hardhat compile"
+      # You can start an Android emulator here, but it requires X11 forwarding or VNC,
+      # which is complex for automated setup. It's usually better to build and download APK.
+ports:
+  - port: 8080 # Example port for a potential web UI if you added one
+    onOpen: ignore
+  - port: 8545 # Default Hardhat network RPC port
+    onOpen: ignore
+vscode:
+  extensions:
+    - esbenp.prettier-vscode # For code formatting
+    - mhutchie.git-graph # For Git visualization
+    - ms-vscode.vscode-typescript-next # For TypeScript support in Hardhat
+    - redhat.java # For Java language support
+    - vscjava.vscode-java-test # For Java testing
+    - dbaeumer.vscode-eslint # For JavaScript/TypeScript linting
+    - beaugunderson.android-dev-ext # Basic Android Dev Extension
+    - solc.solidity # For Solidity syntax highlighting
+    - serayuzgur.crates # For Rust/Cargo (if needed)
+
+image:
+  file: .gitpod.Dockerfile
